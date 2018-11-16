@@ -1,0 +1,24 @@
+#!/bin/bash
+#PBS -N plink_log_lutein_cov
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=480:00:00
+#PBS -e errlog_lutein
+#PBS -q high
+
+cd $PBS_O_WORKDIR
+
+#plink --bfile 603 --logistic --pheno pnt_heibai --noweb --out heibai_cov --allow-no-sex --no-parents --no-sex
+plink --bfile 603 --logistic --pheno pnt_lutein --noweb --out lutein --allow-no-sex --no-parents --no-sex --covar cov_zmc.txt --covar-number 1-4
+#--pfilter 0.01
+
+awk '{if($5=="ADD"){OFS=",";print $1,$2,$3,$9}}' lutein.assoc.logistic > lutein.resul
+
+grep -v "NA" lutein.resul > lutein.result
+
+rm lutein.resul
+
+python hh_man_lutein.py lutein.result
+
+python qqplot.py lutein.result
+
+rm plink_log_lutein_cov.o*

@@ -1,0 +1,14 @@
+#!/bin/bash
+#PBS -N pca_533
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=480:00:00
+#PBS -e errlog_533_pca
+
+cd $PBS_O_WORKDIR
+
+/public/home/hwu/mcbin/gcta_1.90.2beta/gcta64 --bfile 533 --make-grm --autosome --out 533_grm
+/public/home/hwu/mcbin/gcta_1.90.2beta/gcta64 --grm 533_grm --pca 4 --out 533_pca
+
+cp 533_pca.eigenvec tmp
+perl -pi -e 's/ /\t/g' tmp
+cut -f 1-4 tmp > covariate

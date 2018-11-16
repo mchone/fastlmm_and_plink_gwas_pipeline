@@ -1,0 +1,2 @@
+1. gec软件用于计算Effective numbers of independent tests Me，下载地址http://grass.cgs.hku.hk/gec/download.php。
+2. 阈值pvalue = 0.05 / Effective_Number。

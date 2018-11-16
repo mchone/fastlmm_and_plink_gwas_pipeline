@@ -1,0 +1,10 @@
+#!/bin/bash
+#PBS -N makebed_523
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=480:00:030
+#PBS -e errlog_523
+
+cd $PBS_O_WORKDIR
+
+#plink --tfile 527 --noweb --allow-no-sex --maf 0.05 --geno 0.25 --make-bed --out 523 --keep 523.list
+plink --tfile 527 --noweb --allow-no-sex --make-bed --out 523 --keep 523.list

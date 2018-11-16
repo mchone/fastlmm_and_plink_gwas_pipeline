@@ -1,0 +1,10 @@
+#!/bin/bash
+#PBS -N gec_533
+#PBS -l nodes=node62:ppn=1
+#PBS -l walltime=480:00:00
+#PBS -e errlog_533_gec
+#PBS -q high
+
+cd $PBS_O_WORKDIR
+
+java -jar /public/home/hwu/mcbin/gec/gec.jar --effect-number --plink-binary 533 --genome --out 533_gec
