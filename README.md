@@ -1,0 +1,2 @@
+# fastlmm_gwas_pipeline
+用fastlmm做Gwas的基本流程
